@@ -8,7 +8,7 @@
 use panic_halt as _;
 
 use cortex_m_rt::entry;
-use cortex_m_semihosting::hprintln;
+use cortex_m_semihosting::{debug, hprintln};
 use libm::{exp, floorf, sin, sqrtf};
 
 #[entry]
@@ -29,5 +29,9 @@ fn main() -> ! {
         exponential_of_four
     )
     .unwrap();
+    // exit QEMU
+    // NOTE do not run this on hardware; it can corrupt OpenOCD state
+    // debug::exit(debug::EXIT_SUCCESS);
+
     loop {}
 }
